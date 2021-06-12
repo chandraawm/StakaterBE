@@ -12,7 +12,8 @@ Deployment : openshift used
 
 Deployment Notes : 
 
-1. Port Used : 8081 . configured in application.yml
+1. Port Used : 8081 . configured in application.yml. If openshift used for deployment , then it uses default port 8080.
+So change the backend service port to 8080 in application.yml file before deployment.
 
 2. Should configure environment variable Name with value to up and running this service.
 
