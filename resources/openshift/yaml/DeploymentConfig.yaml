@@ -1,0 +1,123 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"apps.openshift.io/v1","kind":"DeploymentConfig","metadata":{"annotations":{},"labels":{"application":"stakaterbe","template":"openjdk18-web-basic-s2i","xpaas":"1.4.14"},"name":"stakaterbe","namespace":"exp-gcas7-test"},"spec":{"replicas":1,"selector":{"deploymentConfig":"stakaterbe"},"strategy":{"resources":{"limits":{"cpu":1,"memory":"2Gi"},"requests":{"cpu":1,"memory":"2Gi"}},"rollingParams":{"intervalSeconds":1,"maxSurge":"20%","maxUnavailable":0,"timeoutSeconds":600,"updatePeriodSeconds":1},"type":"Rolling"},"template":{"metadata":{"labels":{"application":"stakaterbe","deploymentConfig":"stakaterbe"},"name":"stakaterbe"},"spec":{"containers":[{"env":[{"name":"JAVA_OPTIONS","value":""},{"name":"Name","value":"Chandra
+      Reddy"},{"name":"HTTPS_PROXY","value":""},{"name":"https_proxy","value":""},{"name":"HTTP_PROXY","value":""},{"name":"http_proxy","value":""},{"name":"GC_MAX_METASPACE_SIZE","value":"300"}],"imagePullPolicy":"Always","name":"stakaterbe","ports":[{"containerPort":8778,"name":"jolokia","protocol":"TCP"},{"containerPort":8080,"name":"http","protocol":"TCP"},{"containerPort":8443,"name":"https","protocol":"TCP"}],"resources":{"limits":{"cpu":0.5,"memory":"2Gi"},"requests":{"cpu":0.5,"memory":"2Gi"}}}],"terminationGracePeriodSeconds":75}},"triggers":[{"imageChangeParams":{"automatic":false,"containerNames":["stakaterbe"],"from":{"kind":"ImageStreamTag","name":"stakaterbe:latest"}},"type":"ImageChange"}]}}
+  creationTimestamp: '2021-06-12T08:54:03Z'
+  generation: 11
+  labels:
+    application: stakaterbe
+    template: openjdk18-web-basic-s2i
+    xpaas: 1.4.14
+  name: stakaterbe
+  namespace: exp-gcas7-test
+  resourceVersion: '1555648271'
+  selfLink: >-
+    /apis/apps.openshift.io/v1/namespaces/exp-gcas7-test/deploymentconfigs/stakaterbe
+  uid: bc97ad94-cb5b-11eb-8754-0050569a2603
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    deploymentConfig: stakaterbe
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources:
+      limits:
+        cpu: '1'
+        memory: 2Gi
+      requests:
+        cpu: '1'
+        memory: 2Gi
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 20%
+      maxUnavailable: 0
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        application: stakaterbe
+        deploymentConfig: stakaterbe
+      name: stakaterbe
+    spec:
+      containers:
+        - env:
+            - name: JAVA_OPTIONS
+            - name: Name
+              value: Chandra Reddy
+            - name: HTTPS_PROXY
+            - name: https_proxy
+            - name: HTTP_PROXY
+            - name: http_proxy
+            - name: GC_MAX_METASPACE_SIZE
+              value: '300'
+          image: >-
+            docker-registry.default.svc:5000/exp-gcas7-test/stakaterbe@sha256:033f48a0657b05c8b67e338c623d8c0e66308520c7cb410b9098b8065fb172fd
+          imagePullPolicy: Always
+          name: stakaterbe
+          ports:
+            - containerPort: 8778
+              name: jolokia
+              protocol: TCP
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+            - containerPort: 8443
+              name: https
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 500m
+              memory: 2Gi
+            requests:
+              cpu: 500m
+              memory: 2Gi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 75
+  test: false
+  triggers:
+    - imageChangeParams:
+        containerNames:
+          - stakaterbe
+        from:
+          kind: ImageStreamTag
+          name: 'stakaterbe:latest'
+          namespace: exp-gcas7-test
+        lastTriggeredImage: >-
+          docker-registry.default.svc:5000/exp-gcas7-test/stakaterbe@sha256:033f48a0657b05c8b67e338c623d8c0e66308520c7cb410b9098b8065fb172fd
+      type: ImageChange
+status:
+  availableReplicas: 1
+  conditions:
+    - lastTransitionTime: '2021-06-13T07:38:37Z'
+      lastUpdateTime: '2021-06-13T07:38:37Z'
+      message: Deployment config has minimum availability.
+      status: 'True'
+      type: Available
+    - lastTransitionTime: '2021-06-13T07:38:46Z'
+      lastUpdateTime: '2021-06-13T07:38:49Z'
+      message: replication controller "stakaterbe-4" successfully rolled out
+      reason: NewReplicationControllerAvailable
+      status: 'True'
+      type: Progressing
+  details:
+    causes:
+      - type: Manual
+    message: manual change
+  latestVersion: 4
+  observedGeneration: 11
+  readyReplicas: 1
+  replicas: 1
+  unavailableReplicas: 0
+  updatedReplicas: 1
